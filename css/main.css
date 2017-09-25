@@ -43,6 +43,8 @@ ul.posts li {
     list-style: none;
 }
 
+
+
 #sidebar1 {
 	width: 150px;
 	float: left;
@@ -53,4 +55,16 @@ ul.posts li {
 	width: 200px;
 	float: right;
 	padding: 0;
+}
+#nav {
+        float: right;
+	position: absolute;
+	right: 2px;
+	height: 50px;
+	line-height: 50px;
+	top: 75px;
+	background: #6f2f2f url('images/navbg.png') top left repeat-x;
+	font-family: 'Helvetica', 'Arial', 'Sans-Serif';
+	font-size: 1.4em;
+	padding: 0 1em 0 1em;
 }
