@@ -41,3 +41,15 @@ ul.posts {
 ul.posts li {
     list-style: none;
 }
+
+#sidebar1 {
+	width: 150px;
+	float: left;
+	padding: 0;
+}
+
+#sidebar2 {
+	width: 200px;
+	float: right;
+	padding: 0;
+}
