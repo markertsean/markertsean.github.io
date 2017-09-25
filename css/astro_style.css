@@ -85,7 +85,7 @@ ul {
 }
 
 #box1 {
-	width: 650px;
+	width: 550px;
 	overflow: hidden;
 	margin: 0 0 28px 0;
 }
@@ -103,7 +103,7 @@ ul {
 }
 
 #content {
-	width: 750px;
+	width: 650px;
 	margin: 0 0 0 175px;
 	padding: 0;
 }
@@ -305,7 +305,7 @@ ul {
 }
 
 #sidebar1 {
-	width: 150px;
+	width: 140px;
 	float: left;
 	padding: 0;
 }
