@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<title>{{ page.title }}</title>
+			<!-- link to main stylesheet -->
+			<link rel="stylesheet" type="text/css" href="/css/main.css">
+		</head>
+		<body>
+			<nav>
+	    		<ul>
+	        		<li><a href="/">Home</a></li>
+		        	<li><a href="/research">Research</a></li>
+	        		<li><a href="/code">Code</a></li>
+              <li><a href="/portfolio">Portfolio</a></li>
+	        		<li><a href="/teaching">Teaching</a></li>
+	    		</ul>
+			</nav>
+      
+<!-- Left hand side bar -->      
+      <div id="sidebar2">
+        <h3>Contact Information</h3>
+        <ul class="linekedList">
+        
+          <li class="first">
+          <a href="/">Sean Markert</a><br/>
+          <a href="https://www.linkedin.com/in/sean-markert">Linkedin</a><br/>
+          <a href="https://www.github.com/markertsean">Github</a><br/>
+          <strong>Email: </strong> markertsean0@gmail.com
+          </lr>
+        
+        </ul>
+      </div>
+
+<!-- Right hand side bar -->            
+      <div id="sidebar 1">
+        <img class="left", src={{page.image}} width="150" alt="" />
+        <p>
+          <em>
+            <font size="1"> {{page.image_text}}</font>
+          </em>
+        </p>
+      </div>
+      
+      
+			<div class="container">
+			
+			{{ content }}
+			
+			</div><!-- /.container -->
+			<footer>
+	    		<ul>
+	        		<li><a href="mailto:markertsean0@gmail.com">email</a></li>
+	        		<li><a href="https://github.com/markertsean">github.com/markertsean</a></li>
+				</ul>
+			</footer>
+		</body>
+	</html>
+
