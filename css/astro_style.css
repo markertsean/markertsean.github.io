@@ -85,7 +85,11 @@ ul {
 }
 
 #box1 {
+/*
 	width: 650px;
+
+*/
+        left:
 	overflow: hidden;
 	margin: 0 0 28px 0;
 }
@@ -103,7 +107,9 @@ ul {
 }
 
 #content {
+/*
 	width: 750px;
+*/
 	margin: 0 0 0 175px;
 	padding: 0;
 }
