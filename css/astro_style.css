@@ -202,7 +202,7 @@ ul {
 	position: relative;
 	padding: 64px 32px 24px 32px;
 /*	width: 1116px;*/
-	width: 1116px;
+	width: 1300px;
 	background: #262626 url('images/cbg.png') top left repeat-x;
 	border-top: solid 1px #606060;
 	border-bottom: solid 1px #151515;
@@ -290,7 +290,7 @@ ul {
 #outer {
 	position: relative;
 	width: 900px;
-        margin: 0 100px 0 100px
+        margin: 0 150px 0 150px
 /*
 	margin: 0 auto 0 auto;
 */
@@ -310,7 +310,7 @@ ul {
 }
 
 #sidebar1 {
-	width: 140px;
+	width: 200px;
 	float: left;
 	padding: 0;
 }
