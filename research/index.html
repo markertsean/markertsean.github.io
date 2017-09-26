@@ -1,28 +1,58 @@
 ---
 layout: astro
 title: Sean Markert, PhD
-image: "images/me/Gila.jpg"
-image_text: At Gila National Forest
+image: "/images/me/sean_proposal_small.jpg"
+image_text: The day of my thesis proposal
 ---
 <div class="blurb">
 
 	      <h2>Weak Gravitational Lensing of Clusters in Simulations</h2>
 	      <p>
-		The study and interpretation of weak gravitational lensing in simulations requires several steps.
-		First, halos (the dark matter component of galaxies) are extracted using the Mass mAp GeNerator for the Multidark Suite
-		(<a href="code.html">MAGNMS</a>),
-                which generates 2D <a href="https://fits.gsfc.nasa.gov/">FITS</a> images containing the suface density projected along
-                a line of sight, using <a href="http://www.multidark.org/">MultiDark</a> simulation catalogs and particle files. 
-                The FITS images are then interpreted by a code that calculates the shear and convergence
-                (parameters governing the distortion of light) at every pixel using Ben Metcalf's
-                <a href="http://metcalf1.bo.astro.it/GLAMER++/html/">GLAMER</a> library,
-                which generates 2D maps of reduced shear components, as well as mock measurements from
-                randomly placed sources.
-                These allow direct comparison between true mass and shear profiles from halos
-                and what is recovered by traditional observational methods.
+                My dissertation was aimed at studying the weak lensing observational methods used to recover galaxy cluster masses.
+                There were two major components to this dissertation: implementing a more accurate density profile, and challenging
+                the observational assumption that the clusters are spherical.
 	      </p>
 
-	      <h3>Publications and Conferences</h3>
+
+
+	      <p>
+                The first part of this project was conceptually straightforward, we know the Einasto density profile provides a
+                better fit to dark matter halos in simulations (for the non-astronomers, I will refer to galaxy clusters as halos).
+                Despite this, the NFW density profile is exclusively used to predict galaxy cluster masses, when fit to weak 
+                lensing data
+                (e.g. 
+                <a href="#ref1">1</a>, 
+                <a href="#ref2">2</a>, 
+                <a href="#ref3">3</a>, 
+                <a href="#ref7">7</a>, 
+                <a href="#ref9">9</a>, 
+                <a href="#ref14">14</a>, 
+                <a href="#ref15">15</a>, 
+                <a href="#ref16">16</a>, 
+                <a href="#ref17">17</a>, 
+                <a href="#ref18">18</a>). 
+                The NFW profile is used for it's many strengths, simple analytical form for the reduced shear (fit parameter),
+                only one free variable (mass), and widespread use of the NFW profile for two decades. The Einasto profile provides a better fit
+                (
+                <a href="#ref4">4</a>, 
+                <a href="#ref5">5</a>, 
+                <a href="#ref6">6</a>, 
+                <a href="#ref8">8</a>, 
+                <a href="#ref10">10</a>, 
+                <a href="#ref13">13</a>),
+                but has a significantly more complicated expression for the reduced shear, requiring more computational resources, and 
+                the weak lensing solution was only recently derived by <a href="#ref11">11</a>, <a href="#ref12">12</a>.
+	      </p>
+	      <p>
+                The second part of my dissertation struck at a significantly more fundamental aspect of weak lensing mass estimation.
+                This assumption is that all of the shear is only in a radial component, or, equivalently, the halos are completely
+                spherically symmetric. Though a good first order approximation, halos have significant structure where this approximation
+                can break down. This problem is further exasperated when structure is added to the line of sight, and even a spherical halo would 
+                experince significant noise due to inhomogeneities along the line of sight.
+	      </p>
+                <!-- basic analysis & plots-->
+
+	      <h2>Publications and Conferences</h2>
 
               The signal of weak gravitational lensing of galaxy groups and clusters
               <br />
@@ -37,5 +67,29 @@ image_text: At Gila National Forest
 	      BAAS, 43, 147.09
 
 	      <br />
+	      <br />
+
+	      <h2>Publications and Conferences</h2>
+
+	      <br />
+              <p id="ref1">1 Applegate, D. E., von der Linden, A., Kelly, P. L., et al. 2014, MNRAS, 439, 48</p>
+              <p id="ref2">2 Broadhurst, T., Takada, M., Umetsu, K., et al. 2005, ApJ, 619, L143</p>
+              <p id="ref3">3 Clowe, D., & Schneider, P. 2001, ArXiv Astrophysics e-prints, astro-ph/0109260</p>
+              <p id="ref4">4 Hayashi, E., & White, S. D. M. 2008, MNRAS, 388, 2</p>
+              <p id="ref5">5 Klypin, A., Yepes, G., Gottlober, S., Prada, F., & Hess, S. 2014, ArXiv e-prints, arXiv:1411.4001</p>
+              <p id="ref6">6 Klypin, A., Yepes, G., Gottl ̈ober, S., Prada, F., & Heß, S. 2016, MNRAS, 457, 4340</p>
+              <p id="ref7">7 Mead, J. M. G., King, L. J., Sijacki, D., et al. 2010, MNRAS, 406, 434</p>
+              <p id="ref8">8 Merritt, D., Graham, A. W., Moore, B., Diemand, J., & Terzi ́c, B. 2006, AJ, 132, 2685</p>
+              <p id="ref9">9 Merten, J., Meneghetti, M., Postman, M., et al. 2015, ApJ, 806, 4</p>
+              <p id="ref10">10 Navarro, J. F., Ludlow, A., Springel, V., et al. 2010, MNRAS, 402, 21</p>
+              <p id="ref11">11 Retana-Montenegro, E., & Frutos-Alfaro, F. 2011, ArXiv e-prints, arXiv:1108.4905</p>
+              <p id="ref12">12 Retana-Montenegro, E., van Hese, E., Gentile, G., Baes, M., & Frutos-Alfaro, F. 2012b, A&A, 540, A70</p>
+              <p id="ref13">13 Stadel, J., Potter, D., Moore, B., et al. 2009, MNRAS, 398, L21</p>
+              <p id="ref14">14 Taylor, J. E., Massey, R. J., Leauthaud, A., et al. 2012, ApJ, 749, 127</p>
+              <p id="ref15">15 Wright, C. O., & Brainerd, T. G. 2000, ApJ, 534, 34</p>
+              <p id="ref16">16 Zhang, Y.-Y., Finoguenov, A., B ̈ohringer, H., et al. 2008, A&A, 482, 451</p>
+              <p id="ref17">17 Zitrin, A., Broadhurst, T., Umetsu, K., et al. 2009, MNRAS, 396, 1985</p>
+              <p id="ref18">18 Zitrin, A., Rosati, P., Nonino, M., et al. 2012, ApJ, 749, 97</p>
+
 
 </div><!-- /.blurb -->
