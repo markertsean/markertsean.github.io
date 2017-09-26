@@ -28,7 +28,7 @@ a:hover {
 body {
 	font-size: 11pt;
 	line-height: 1.5em;
-	font-family: 'Trebuchet MS', sans-serif;
+	font-family: 'Helvetica', 'Arial', 'Sans-Serif';
 	background: #1f1f1f url('images/bg.png');
 	color: #909090;
 }
@@ -104,7 +104,7 @@ ul {
 
 #content {
 	width: 750px;
-	margin: 0 0 0 105px;
+	margin: 0 0 0 175px;
 	padding: 0;
 }
 
@@ -290,7 +290,10 @@ ul {
 #outer {
 	position: relative;
 	width: 900px;
+        margin: 0 100px 0 100px
+/*
 	margin: 0 auto 0 auto;
+*/
 }
 
 #search input.button {
