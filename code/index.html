@@ -8,18 +8,18 @@ image_text: Observing at Apache Point Observatory
 
 	      <h2>MAGNMS</h2>
 	      <p>
-		The Mass mAp Generator for the Multidark Suite is designed to take a PMss file from the MultiDark suite, 
+		The Mass mAp Generator for the Multidark Suite (MAGNMS) is designed to take a PMss file from the MultiDark suite of simulations, 
 		and convert it to a FITS surface density map compatible with Ben Metcalf's <a href="http://glenco.github.io/glamer/">GLAMER</a> code.
 	      </p>
 	      <p>
-		The code uses CMake to compile the code. A CMakeLists.txt is included, but will require modification for each user.
+		The code uses CMake to compile the code. A CMakeLists.txt is included in the repository, but will require modification for each user's system.
 	      </p>
 	      <p>
 		This program takes an input file (extractInfo.dat or file given as command line argument) for input parameters to write 
 		FITS mass maps from simulations. Each argument must be listed, and the value seperated by whitespace. Accepted variables can be found in the readme.
 	      </p>
 	      <p>
-		The procedure of the code is outlined below:
+		The general procedure of the code is outlined below:
 	      <ol type="1">
 		<li>Read the user input from extractInfo.dat</li>
 		<li>Perform internal checks for directories</li>
@@ -34,12 +34,14 @@ image_text: Observing at Apache Point Observatory
 	      </p>
 	      <p>
 		MAGNMS can be downloaded at my 
-		<a href="https://github.com/markertsean">Github page</a>.
+		<a href="https://github.com/markertsean">Github page</a>, where you'll find more documentation and details, as well as tools I use for
+                analyzing the mass maps.
 	      </p>
 
 	      <img class="left" src="images/Box_017894647.png"  width="600" alt="" />
 
-	      <p>
+              <br />
+	      <p style="clear:left">
 		2D surface density map from MAGNMS, 10 h<sup>-1</sup> Mpc FOV
 	      </p>
 
