@@ -60,6 +60,12 @@ img.top {
 	margin: 4px 0 20px 0;
 }
 
+img_percent50 {
+        float: left;
+        width: 50%;
+        height: auto;
+}
+
 p {
 	margin-bottom: 1.25em;
 }
