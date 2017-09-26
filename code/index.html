@@ -1,0 +1,48 @@
+---
+layout: astro
+title: Sean Markert, PhD
+image: "/images/me/apo.jpg"
+image_text: Observing at Apache Point Observatory
+---
+<div class="blurb">
+
+	      <h2>MAGNMS</h2>
+	      <p>
+		The Mass mAp Generator for the Multidark Suite is designed to take a PMss file from the MultiDark suite, 
+		and convert it to a FITS surface density map compatible with Ben Metcalf's <a href="http://glenco.github.io/glamer/">GLAMER</a> code.
+	      </p>
+	      <p>
+		The code uses CMake to compile the code. A CMakeLists.txt is included, but will require modification for each user.
+	      </p>
+	      <p>
+		This program takes an input file (extractInfo.dat or file given as command line argument) for input parameters to write 
+		FITS mass maps from simulations. Each argument must be listed, and the value seperated by whitespace. Accepted variables can be found in the readme.
+	      </p>
+	      <p>
+		The procedure of the code is outlined below:
+	      <ol type="1">
+		<li>Read the user input from extractInfo.dat</li>
+		<li>Perform internal checks for directories</li>
+		<li>Read the halo catalogs, write a short file of valid halos for faster read in based on user constraints</li>
+		<li>Read in the particles from PMss files, save as array into memory. The PMss files will be searched for in the partDir directory, 
+		    and search based on recognized file patterns with the snapNum and PMss first and last values. Additionally, the memory usage here 
+		    is extreme, be mindful of memory usage of your computer before running.</li>
+		<li>Generate link list of particles</li>
+		<li>Link particles and halos, writing output FITS files -Particles go in Rvir, FOV box, or integration list sets -Writes images with 
+		    headers and FITS mass maps, with no smoothing -Calculates the orientation of the halo, writes to the header</li>
+	      </ol>
+	      </p>
+	      <p>
+		MAGNMS can be downloaded at my 
+		<a href="https://github.com/markertsean">Github page</a>.
+	      </p>
+
+	      <img class="left" src="images/Box_017894647.png"  width="600" alt="" />
+
+	      <p>
+		2D surface density map from MAGNMS, 10 h<sup>-1</sup> Mpc FOV
+	      </p>
+
+	      <br />
+
+</div><!-- /.blurb -->
