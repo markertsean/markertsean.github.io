@@ -255,7 +255,6 @@ ul {
 }
 
 #nav {
-        float:right;
 	right: 2px;
 	height: 50px;
 	line-height: 50px;
@@ -263,11 +262,11 @@ ul {
 /*
 	background: #6f2f2f url('images/navbg.png') top left repeat-x;
 	position: absolute;
+	border-top: solid 1px #ab6f6f;
 */
 	font-family: 'Helvetica', 'Arial', 'Sans-Serif';
 	font-size: 1.4em;
 	padding: 0 1em 0 1em;
-	border-top: solid 1px #ab6f6f;
 }
 
 #nav a {
@@ -285,7 +284,7 @@ ul {
 }
 
 #nav ul li {
-	float: left;
+	float: right;
 }
 
 #outer {
