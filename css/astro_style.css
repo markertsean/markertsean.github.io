@@ -255,13 +255,16 @@ ul {
 }
 
 #nav {
-	position: absolute;
+        float:right;
 	right: 2px;
 	height: 50px;
 	line-height: 50px;
 	top: 75px;
+/*
 	background: #6f2f2f url('images/navbg.png') top left repeat-x;
-	font-family: 'Yanone Kaffeesatz', sans-serif;
+	position: absolute;
+*/
+	font-family: 'Helvetica', 'Arial', 'Sans-Serif';
 	font-size: 1.4em;
 	padding: 0 1em 0 1em;
 	border-top: solid 1px #ab6f6f;
