@@ -206,23 +206,26 @@ ul {
 
 #box1 {
 /*
-	width: 650px;
-
+  Governs main text box,
+  modify margin
 */
-        left:
+
 	overflow: hidden;
-	margin: 15px 30px 28px 30px;
+	margin: 15px 30px 28px 35px;
 }
 
 #content {
 /*
-	width: 750px;
+  Content is in box
 */
 	margin: 0 0 0 200px;
 	padding: 0;
 }
 
 body {
+/*
+  Pretty much the whole page
+*/
 	font-size: 11pt;
 	line-height: 1.5em;
 	font-family: 'Helvetica', 'Arial', 'Sans-Serif';
@@ -232,6 +235,9 @@ body {
 
 
 #main {
+/*
+  Spans everything but the header
+*/
 	position: relative;
 	padding: 64px 32px 24px 32px;
 /*	width: 1300px;*/
