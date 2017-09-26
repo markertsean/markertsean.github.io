@@ -295,9 +295,10 @@ ul {
 
 #outer {
 	position: relative;
-	width: 900px;
+
         margin: 0 150px 0 150px
 /*
+	width: 900px;
 	margin: 0 auto 0 auto;
 */
 }
