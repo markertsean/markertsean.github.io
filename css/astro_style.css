@@ -348,12 +348,12 @@ div.figure {
 
 div.figure_caption {
   float: left;
-  width: 80%;
+  width: 600;
   text-align: left;
   font-style: italic;
   font-size: smaller;
+  text-indent: 15;
 /*
-  text-indent: 10;
   margin: 0.5em;
   padding: 0.5em;
   border: thin silver solid;
