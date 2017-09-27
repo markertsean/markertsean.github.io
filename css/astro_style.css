@@ -333,7 +333,8 @@ body {
 
 div.figure {
   float: left;
-  width: 50%;
+  width: 25%;
+  max-width: 25%;
 /*
   width: 30%;
   text-align: left;
