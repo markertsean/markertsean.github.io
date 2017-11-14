@@ -361,7 +361,7 @@ figcaption {
     padding: 0 5px 5px;
 }​
 
-table.rightalign td {
+table.rightalign td th{
   text-align: right;
 }
 
