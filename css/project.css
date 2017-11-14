@@ -361,6 +361,10 @@ figcaption {
     padding: 0 5px 5px;
 }​
 
+table.rightalign td {
+  text-align: right;
+}
+
 /*
 div.figure {
   float: left;
