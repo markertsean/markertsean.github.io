@@ -38,6 +38,7 @@ title: Fantasy Football Forecasting
 	      <br>
                 The number of complete passes per game displays a shape similar to the normal distribution.
 	      </p>
+	      <p><br></p>
 
 	      <p>
 		The remaining fields are all binned, and predicted using classification models. For the
@@ -57,6 +58,7 @@ title: Fantasy Football Forecasting
 	      <br>
                 The number of pass touchdowns per game show a tail after ~3 touchdowns.
 	      </p>
+	      <p><br></p>
               <p>
 
 	      <img src="/fantasy_football/images/overall_hist_touchdown_40.png" 
@@ -65,6 +67,7 @@ title: Fantasy Football Forecasting
 	      <br>
                 The number of touchdowns over 40 yards per game becomes a binary, 0 or 1+.
       	      </p>
+	      <p><br></p>
 
 	      <h2>Model selection</h2>
 	      <p>
@@ -83,6 +86,7 @@ title: Fantasy Football Forecasting
 	      <br>
                 The number of passing yards predicted by the linear model. The blue line is a simple 1:1.
 	      </p>
+	      <p><br></p>
 	      <p>
 	      <img src="/fantasy_football/images/MLP_2020_2022.pkl_passing_yards.png" 
                 width="800" 
@@ -90,6 +94,7 @@ title: Fantasy Football Forecasting
 	      <br>
                 The number of passing yards predicted by the multi layered perceptron model.
 	      </p>
+	      <p><br></p>
 	      <p>
 	      <img src="/fantasy_football/images/KNN_2020_2022.pkl_passing_yards.png" 
                 width="800" 
@@ -97,6 +102,7 @@ title: Fantasy Football Forecasting
 	      <br>
                 The number of passing yards predicted by the k neighbors model.
 	      </p>
+	      <p><br></p>
 
 	      <p>
 		Oof. As we can see, the R^2 values all lie around 0.07, indicating our models explain
@@ -124,6 +130,7 @@ title: Fantasy Football Forecasting
 	      <br>
                 The k nearest neighbors algorithm captures some higher interceptions.
 	      </p>
+	      <p><br></p>
 	      <p>
 
 	      <img src="/fantasy_football/images/MLP_2020_2022.pkl_offensive_interception.png" 
@@ -132,6 +139,7 @@ title: Fantasy Football Forecasting
 	      <br>
                 The neural network has a tendency to under predict the numbers of interceptions.
 	      </p>
+	      <p><br></p>
 	      <p>
 	      <img src="/fantasy_football/images/SVM_2020_2022.pkl_offensive_interception.png" 
                 width="800" 
@@ -139,6 +147,7 @@ title: Fantasy Football Forecasting
 	      <br>
                 The support vector algorithm completely fails to predict interceptions.
 	      </p>
+	      <p><br></p>
 
 	      <p>
 		This isn't the only metric with mixed results. For the same algorithms predicting the
@@ -154,12 +163,14 @@ title: Fantasy Football Forecasting
 	      <br>
               The k nearest neighbors algorithm performs best at predicting the 0 case, but severly under predicts these cases.
 	      </p>
+	      <p><br></p>
 	      <p>
 	      <img src="/fantasy_football/images/MLP_2020_2022.pkl_pass_touchdown.png" 
                 width="800" 
 	      />
                 The neural network fails completely to predict the edge bins, favoring the most populous classes.
 	      </p>
+	      <p><br></p>
 	      <p>
 
 	      <img src="/fantasy_football/images/SVM_2020_2022.pkl_pass_touchdown.png" 
@@ -168,6 +179,7 @@ title: Fantasy Football Forecasting
 	      <br>
                 The support vector algorithm was the worse performer for the offensive interceptions, but here is best at predicting the top end class.
 	      </p>
+	      <p><br></p>
 
 	      <p>
 		Clearly the strengths and weaknesses of these algorithms are affecting these results.
@@ -175,6 +187,38 @@ title: Fantasy Football Forecasting
 		and determine the best regressor model is consistently the linear regression, and use that
 		for our final analysis. The best classifier overall is actually the support vector machine,
 		even though it was a poor performer in our samples above.
+	      </p>
+	      
+	      <h2>Systematic issues in the models</h2>
+	      <p>
+		Clearnly there are issues with the models ability to forecast. There are a few possible
+		explinations of this. One is a level of randomness from game to game - certainly an effect,
+		but the difference in the model results indicate we should be able to compensate for this
+		on some level.
+	      </p>
+	      <p>
+		We already alluded to one issue - data imbalance. Our model all skewed towards the majority
+		class, which is clearly a systemic issue. We could correct this by downsampling further,
+		our current method was just to downsample the largest class to match the second largest.
+		A better scaling would be to scale things to the minority class size, and this will be
+		implemented in later versions. If we implemented this now, we would run into an issue of
+		dimentsionality - with 40-50 fields, we are training models with an extreme number of
+		features. The training data looks at a few tens of thousands of games, and any
+		resampling reduces this number. The number of fields we are using is already far too few
+		given the number of records we are using to train. Better resampling will come when
+		we implement a more selective sampling on the number of input fields, more specific to
+		each predicted field.
+	      </p>
+	      <p>
+		Another factor affecting the results is that of variations in the game over time.
+		We saw in exploration the data is not statuionary ove time. These trends will affect
+		training and predictions, especially given we are testing on the most recent data.
+		When we downscale the number of fields we train on per predicted value, we will also
+		have an oppourtunity to train on more recent data to account for this issue.
+	      </p>
+
+	      <p>
+		<a href="/fantasy_football/results">Continue to results</a>
 	      </p>
 
 </div><!-- /.blurb -->
