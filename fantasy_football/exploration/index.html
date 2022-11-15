@@ -16,7 +16,7 @@ title: Fantasy Football Forecasting
 		number of 40+ yard plays, sacks, pass attempts, kick attempts, and turnovers.
 		We select relevant fields, and translate the play-by-play data to sums of yards and
 		counts of occurences over the course of a game. In the end we trim down the number of
-		fields considerably, and are left with 37 fields that desctibe the state of the
+		fields considerably, and are left with 37 fields that describe the state of the
 		game for a team, corresponding to fantasy football metrics. The remaining fields are:
 	      </p>
 	      <p>
@@ -38,7 +38,7 @@ title: Fantasy Football Forecasting
 	      </p>
 		
 	      <img src="/fantasy_football/images/carries_hist.png" 
-                width="400" 
+                width="800" 
                 alt="The number of carries per season since 1999."
 		   />
 	      <p>
@@ -46,7 +46,7 @@ title: Fantasy Football Forecasting
 		This has lead to an increase of things like passing touchdowns.
 	      </p>
 	      <img src="/fantasy_football/images/touchdown_pass_hist.png" 
-                width="400" 
+                width="800" 
                 alt="The number of passing touchdowns have increased over time, due to better
 		     passing lines."
 	      />
@@ -56,19 +56,19 @@ title: Fantasy Football Forecasting
 		two point conversion plays. This is clearly visible in our data.
 	      </p>
 	      <img src="/fantasy_football/images/two_point_attempt_hist.png" 
-                width="400" 
+                width="800" 
                 alt="The number of two point conversions spiked after 2015, due to rule changes."
 	      />
 
 	      <p>
-		Now, we average the weeky data over time to generate our features. We want a length
+		Now we average the weeky data over time to generate our features. We want a length
 		that captures the team's abilities, but also factors in variations in the team's plays
 		and rosters. We compare corelations of a few rollback dates, and find 3 is a good
 		rolling average to use. We thus use a rolling average of three weeks, and shift the
 		data by a week to avoid the overlap a moving average causes.
 	      </p>
 	      <p>
-		Now, we have a list of features that uses rolling averages of previous games for
+		We have a list of features that uses rolling averages of previous games for
 		forecasting the next game. This is a good start, but we need to consider another
 		factor - the opposing team. The performance of the other team will have a huge
 		impact on the fantasy football results. So, we attach a subset of the opponent's
