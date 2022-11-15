@@ -15,14 +15,14 @@ title: Fantasy Football Forecasting
 		Relevant fields for fantasy football generally involve touchdown, yardage, the
 		number of 40+ yard plays, sacks, pass attempts, kick attempts, and turnovers.
 		We select relevant fields, and translate the play-by-play data to sums of yards and
-		counts of occurences over the course of a game. In the end we trim down the number of
+		counts of occurrences over the course of a game. In the end we trim down the number of
 		fields considerably, and are left with 37 fields that describe the state of the
 		game for a team, corresponding to fantasy football metrics. The remaining fields are:
 	      </p>
 	      <p>
 		["season", "week", "team", "opponent", "rushing_yards", "passing_yards",
                 "receiving_yards", "return_yards", "passing_yards_40",
-                "rushing_recieving_yards_40", "touchdown", "pass_touchdown",
+                "rushing_receiving_yards_40", "touchdown", "pass_touchdown",
                 "rush_touchdown", "return_touchdown", "two_point_attempt",
                 "two_point_conv_success", "td_yards_40", "extra_point_attempt",
                 "extra_point_success", "field_goal_attempt", "field_goal_success",
@@ -73,9 +73,9 @@ title: Fantasy Football Forecasting
 	      <p><br></p>
 
 	      <p>
-		Now we average the weeky data over time to generate our features. We want a length
+		Now we average the weekly data over time to generate our features. We want a length
 		that captures the team's abilities, but also factors in variations in the team's plays
-		and rosters. We compare corelations of a few rollback dates, and find 3 is a good
+		and rosters. We compare correlations of a few rollback dates, and find 3 is a good
 		rolling average to use. We thus use a rolling average of three weeks, and shift the
 		data by a week to avoid the overlap a moving average causes.
 	      </p>

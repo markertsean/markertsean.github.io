@@ -1,0 +1,187 @@
+---
+layout: ff_default
+title: Fantasy Football Forecasting
+---
+<div class="blurb">
+	      <h2>Predicting the top performing teams</h2>
+	      <p>
+		The absolute predictions of these algorithms are not the most important metric to judge
+		them by, it is the relative performance of the teams that matters.
+		We really need to have the ranking of performances correctly, so we will test these
+		algorithms by seeing how accurately we can predict the top 3 teams.
+	      </p>
+	      <p>
+		For a selection of three teams out of 32 in the NFL, the likelihood of randomly drawing
+		one of the top three in a given metric is 9.4%. To randomly guess all three correctly,
+		the likelihood is 0.020%. These serve as a baseline to compare our precision and recall
+		metric with, though there is not a 1 to 1 comparison we can make between the values.
+		There are more than three teams that can appear in the top teams, as say, if no team fumbles
+		the ball in a given week, you would have 32 teams in the "top 3" for fumbles for the week.
+		We will however use the precision and recall metric for "team in the top three" for a week,
+		for our	test data set over 2020-2022.
+	      </p>
+	      <p>
+		<table>
+		  <tr>
+		    <th>Field Name</th>
+		    <th>N in top 3</th>
+		    <th>N predicted in top 3</th>
+		    <th>N correct</th>
+		    <th>Precision</th>
+		    <th>Recall</th>
+		  </tr>
+		  <tr>
+		    <td>Complete Passes</td>
+		    <td>254</td>
+		    <td>965</td>
+		    <td>220</td>
+		    <td>0.228</td>
+		    <td>0.866</td>
+		  </tr>
+		  <tr>
+		    <td>Defensive Points Allowed</td>
+		    <td>628</td>
+		    <td>1354</td>
+		    <td>628</td>
+		    <td>0.464</td>
+		    <td>1.000</td>
+		  </tr>
+		  <tr>
+		    <td>Field goal successes close</td>
+		    <td>810</td>
+		    <td>1354</td>
+		    <td>810</td>
+		    <td>0.598</td>
+		    <td>1.000</td>
+		  </tr>
+		  <tr>
+		    <td>Field goal successes far</td>
+		    <td>1013</td>
+		    <td>1354</td>
+		    <td>1013</td>
+		    <td>0.748</td>
+		    <td>1.000</td>
+		  </tr>
+		  <tr>
+		    <td>Sacks</td>
+		    <td>364</td>
+		    <td>1354</td>
+		    <td>364</td>
+		    <td>0.269</td>
+		    <td>1.000</td>
+		  </tr>
+		  <tr>
+		    <td>Touchdown Passing</td>
+		    <td>584</td>
+		    <td>1257</td>
+		    <td>546</td>
+		    <td>0.434</td>
+		    <td>0.934</td>
+		  </tr>
+		  <tr>
+		    <td>Touchdown Rushing</td>
+		    <td>705</td>
+		    <td>1354</td>
+		    <td>705</td>
+		    <td>0.521</td>
+		    <td>1.000</td>
+		  </tr>
+		  <tr>
+		    <td>Touchdown Extra Points</td>
+		    <td>470</td>
+		    <td>1175</td>
+		    <td>395</td>
+		    <td>0.336</td>
+		    <td>0.840</td>
+		  </tr>
+		  <tr>
+		    <td>Yards Passing/Receiving</td>
+		    <td>189</td>
+		    <td>372</td>
+		    <td>82</td>
+		    <td>0.220</td>
+		    <td>0.434</td>
+		  </tr>
+		  <tr>
+		    <td>Yards Rushing</td>
+		    <td>184</td>
+		    <td>656</td>
+		    <td>128</td>
+		    <td>0.195</td>
+		    <td>0.696</td>
+		  </tr>
+		</table>
+	      </p>
+	      <p>
+		Some of the fields only make sense to compare the top 1, or best performing. In cases like fumbles, where many teams
+		may only be at 0, this category will be crowded and useless as a top 3. We provide that result below, and recommend
+		comparing against a simple 3.12% chance of guessing randomly the top performing team.
+	      </p>
+	      <p>
+		<table>
+		  <tr>
+		    <th>Field Name</th>
+		    <th>N top</th>
+		    <th>N predicted in top</th>
+		    <th>N correct</th>
+		    <th>Precision</th>
+		    <th>Recall</th>
+		  </tr>
+		  <tr>
+		    <td>Fumbles</td>
+		    <td>443</td>
+		    <td>471</td>
+		    <td>165</td>
+		    <td>0.350</td>
+		    <td>0.372</td>
+		  </tr>
+		  <tr>
+		    <td>Fumbles Forced</td>
+		    <td>443</td>
+		    <td>471</td>
+		    <td>165</td>
+		    <td>0.350</td>
+		    <td>0.372</td>
+		  </tr>
+		  <tr>
+		    <td>Interceptions caught</td>
+		    <td>108</td>
+		    <td>1207</td>
+		    <td>89</td>
+		    <td>0.074</td>
+		    <td>0.824</td>
+		  </tr>
+		  <tr>
+		    <td>Interceptions thrown</td>
+		    <td>634</td>
+		    <td>1349</td>
+		    <td>632</td>
+		    <td>0.469</td>
+		    <td>0.997</td>
+		  </tr>
+		</table>
+	      </p>
+	      <p>
+		Comparing our metrics against the random samples, it's clear most of our forecasts at least approximate
+		better than random guessing. We are capturing a signal, and able to predict based on it.
+	      </p>
+	      <p>
+		However, there is a big difference between being able to predict values, and the predictions being useful.
+		In some cases the top performers are predicted at twice the rate as they should be. While not a terrible
+		performance on paper, someone having a pen and pencil following players and teams can likely perform on a
+		similar or better level than this algorithm with simple assumptions.
+	      </p>
+	      <p>
+		This project is an ongoing one, and I've already outlined places for improvements. I will update these pages
+		when appropriate, and when results improve.
+	      </p>
+	      <p>
+		<br>
+		<img width="800" src="/fantasy_football/images/overall_hist_complete_pass.png" />
+		<br>
+                The number of complete passes per game displays a shape similar to the normal distribution.
+		<br>
+	      </p>
+
+
+</div><!-- /.blurb -->

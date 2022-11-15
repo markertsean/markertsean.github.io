@@ -6,14 +6,14 @@ title: Fantasy Football Forecasting
 	      <h2>Model training</h2>
 	      <p>
 		For each team in each game, we have roughly 50 features. We operate under
-		the assumption that each team/game is independent of eachother from training purposes,
+		the assumption that each team/game is independent of each other from training purposes,
 		an incorrect assumption but a necessary one.
 	      </p>
 	      <p>
 		We take further steps in preparing our training data for machine learning.
 		We z-scale the features to center it on 0 and ensure the standard deviation is 1
 		for all features, which is necessary for many ML algorithms. Additionally, we
-		implement dimensionality reduction with principal compoenent analysis. The explained
+		implement dimensionality reduction with principal component analysis. The explained
 		variance from the PCA grows slowly, so the reduction is small, but we reduce
 		the number of features to 40 with 90% explained variance.
 	      </p>
@@ -28,7 +28,7 @@ title: Fantasy Football Forecasting
 	      </p>
 	      <p>
 		There are a few fields for which we use regression models. The number of rushing yards,
-		passing/recieving yards, and number of complete passes were all fit with regression models.
+		passing/receiving yards, and number of complete passes were all fit with regression models.
 		These have a wide range of values, so we will attempt to forecast these values directly.
 	      </p>
 	      <p>
@@ -43,11 +43,11 @@ title: Fantasy Football Forecasting
 	      <p>
 		The remaining fields are all binned, and predicted using classification models. For the
 		number of passing touchdowns, for example, drops quickly after 2 passing touchdowns. Since
-		the number of passing touchdowns is a very important mertric in fantasy football, we want to
+		the number of passing touchdowns is a very important metric in fantasy football, we want to
 		be precise, but it is a bit futile to try to predict the high end tail. There are not
 		enough test cases to train the model on this end, so we bin the data to the values 0, 1, 2,
 		and 3+. For the number of touchdowns that exceed 40 yards, the data is so heavily skewed we
-		simply bin as 0 or 1+. In the case of a highly inbalanced data set, we also resample the
+		simply bin as 0 or 1+. In the case of a highly imbalanced data set, we also resample the
 		data such that the majority prediction class is not more than 1.2x the size of the next
 		largest class.
 	      </p>
@@ -115,12 +115,12 @@ title: Fantasy Football Forecasting
 	      <p>
 		Moving on to look at classifier categories, we see a much higher rate of success. First,
 		looking at offensive interceptions (interceptions where the team in question threw the
-		ball), we see that the k neighbors algorithm actuall does a fair job predicting our
+		ball), we see that the k neighbors algorithm actually does a fair job predicting our
 		categories, of 0/1/2+. We will focus on the macro metrics, which averages
 		the precision across all bins, and see a macro precision of 0.42, meaning our predicted
-		value is correct roughly 42% of the time. This is fairly impressive given the inbalance
+		value is correct roughly 42% of the time. This is fairly impressive given the imbalanced
 		in the classes. This imbalance hurts algorithms here such as our neural network, and
-		support vector alrogihtm, which completely failed to capture the less frequent bins.
+		support vector algorithm, which completely failed to capture the less frequent bins.
 	      </p>
 	      <p>
 
@@ -152,7 +152,7 @@ title: Fantasy Football Forecasting
 	      <p>
 		This isn't the only metric with mixed results. For the same algorithms predicting the
 		number of pass touchdowns, we see similar issues predicting values on the edges.
-		Each struggles to predict the edge cases of 0 and 3+, and are inbalanced to the more
+		Each struggles to predict the edge cases of 0 and 3+, and are imbalanced to the more
 		populated bins.
 	      </p>
 	      <p>
@@ -161,7 +161,7 @@ title: Fantasy Football Forecasting
                 width="800" 
 		   />
 	      <br>
-              The k nearest neighbors algorithm performs best at predicting the 0 case, but severly under predicts these cases.
+              The k nearest neighbors algorithm performs best at predicting the 0 case, but severely under predicts these cases.
 	      </p>
 	      <p><br></p>
 	      <p>
@@ -191,30 +191,30 @@ title: Fantasy Football Forecasting
 	      
 	      <h2>Systematic issues in the models</h2>
 	      <p>
-		Clearnly there are issues with the models ability to forecast. There are a few possible
-		explinations of this. One is a level of randomness from game to game - certainly an effect,
+		Clearly there are issues with the models ability to forecast. There are a few possible
+		explanations of this. One is a level of randomness from game to game - certainly an effect,
 		but the difference in the model results indicate we should be able to compensate for this
 		on some level.
 	      </p>
 	      <p>
 		We already alluded to one issue - data imbalance. Our model all skewed towards the majority
-		class, which is clearly a systemic issue. We could correct this by downsampling further,
-		our current method was just to downsample the largest class to match the second largest.
+		class, which is clearly a systemic issue. We could correct this by down sampling further,
+		our current method was just to down sample the largest class to match the second largest.
 		A better scaling would be to scale things to the minority class size, and this will be
 		implemented in later versions. If we implemented this now, we would run into an issue of
 		dimentsionality - with 40-50 fields, we are training models with an extreme number of
 		features. The training data looks at a few tens of thousands of games, and any
-		resampling reduces this number. The number of fields we are using is already far too few
-		given the number of records we are using to train. Better resampling will come when
+		re-sampling reduces this number. The number of fields we are using is already far too few
+		given the number of records we are using to train. Better re-sampling will come when
 		we implement a more selective sampling on the number of input fields, more specific to
 		each predicted field.
 	      </p>
 	      <p>
 		Another factor affecting the results is that of variations in the game over time.
-		We saw in exploration the data is not statuionary ove time. These trends will affect
+		We saw in exploration the data is not stationary over time. These trends will affect
 		training and predictions, especially given we are testing on the most recent data.
 		When we downscale the number of fields we train on per predicted value, we will also
-		have an oppourtunity to train on more recent data to account for this issue.
+		have an opportunity to train on more recent data to account for this issue.
 	      </p>
 
 	      <p>
