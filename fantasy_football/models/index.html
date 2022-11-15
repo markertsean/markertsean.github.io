@@ -31,10 +31,14 @@ title: Fantasy Football Forecasting
 		passing/recieving yards, and number of complete passes were all fit with regression models.
 		These have a wide range of values, so we will attempt to forecast these values directly.
 	      </p>
+	      <p>
 	      <img src="/fantasy_football/images/overall_hist_complete_pass.png" 
                 width="800" 
-                alt="The number of complete passes per game displays a shape similar to the normal distribution."
-	      />
+		   />
+	      <br>
+                The number of complete passes per game displays a shape similar to the normal distribution.
+	      </p>
+
 	      <p>
 		The remaining fields are all binned, and predicted using classification models. For the
 		number of passing touchdowns, for example, drops quickly after 2 passing touchdowns. Since
@@ -46,14 +50,22 @@ title: Fantasy Football Forecasting
 		data such that the majority prediction class is not more than 1.2x the size of the next
 		largest class.
 	      </p>
+	      <p>
 	      <img src="/fantasy_football/images/overall_hist_pass_touchdown.png" 
                 width="800" 
-                alt="The number of pass touchdowns per game show a tail after ~3 touchdowns."
-	      />
+		   />
+	      <br>
+                The number of pass touchdowns per game show a tail after ~3 touchdowns.
+	      </p>
+              <p>
+
 	      <img src="/fantasy_football/images/overall_hist_touchdown_40.png" 
                 width="800" 
-                alt="The number of touchdowns over 40 yards per game becomes a binary, 0 or 1+"
-	      />
+		   />
+	      <br>
+                The number of touchdowns over 40 yards per game becomes a binary, 0 or 1+.
+      	      </p>
+
 	      <h2>Model selection</h2>
 	      <p>
 		After training our regressors and classifiers, we compare the results between models
@@ -64,18 +76,28 @@ title: Fantasy Football Forecasting
 		the predicted yardage and number of pass plays. Below, we show a selection for three of
 		our models of the number of predicted passing yards for games in the 2020-2022 seasons.
 	      </p>
+	      <p>
 	      <img src="/fantasy_football/images/Linear_2020_2022.pkl_passing_yards.png" 
                 width="800" 
-                alt="The number of passing yards predicted by the linear model. The blue line is a simple 1:1."
-      	      />
+      		   />
+	      <br>
+                The number of passing yards predicted by the linear model. The blue line is a simple 1:1.
+	      </p>
+	      <p>
 	      <img src="/fantasy_football/images/MLP_2020_2022.pkl_passing_yards.png" 
                 width="800" 
-                alt="The number of passing yards predicted by the multi layered perceptron model."
-      	      />
+      		   />
+	      <br>
+                The number of passing yards predicted by the multi layered perceptron model.
+	      </p>
+	      <p>
 	      <img src="/fantasy_football/images/KNN_2020_2022.pkl_passing_yards.png" 
                 width="800" 
-                alt="The number of passing yards predicted by the k neighbors model."
-      	      />
+      		   />
+	      <br>
+                The number of passing yards predicted by the k neighbors model.
+	      </p>
+
 	      <p>
 		Oof. As we can see, the R^2 values all lie around 0.07, indicating our models explain
 		a small fraction of the trend. The neighbors model may give us insight as to why -
@@ -94,36 +116,59 @@ title: Fantasy Football Forecasting
 		in the classes. This imbalance hurts algorithms here such as our neural network, and
 		support vector alrogihtm, which completely failed to capture the less frequent bins.
 	      </p>
+	      <p>
+
 	      <img src="/fantasy_football/images/KNN_2020_2022.pkl_offensive_interception.png" 
                 width="800" 
-                alt="The k nearest neighbors algorithm captures some higher interceptions."
-	      />
+		   />
+	      <br>
+                The k nearest neighbors algorithm captures some higher interceptions.
+	      </p>
+	      <p>
+
 	      <img src="/fantasy_football/images/MLP_2020_2022.pkl_offensive_interception.png" 
                 width="800" 
-                alt="The neural network has a tendency to under predict the numbers of interceptions"
-	      />
+		   />
+	      <br>
+                The neural network has a tendency to under predict the numbers of interceptions.
+	      </p>
+	      <p>
 	      <img src="/fantasy_football/images/SVM_2020_2022.pkl_offensive_interception.png" 
                 width="800" 
-                alt="The support vector algorithm completely fails to predict interceptions."
-	      />
+		   />
+	      <br>
+                The support vector algorithm completely fails to predict interceptions.
+	      </p>
+
 	      <p>
 		This isn't the only metric with mixed results. For the same algorithms predicting the
 		number of pass touchdowns, we see similar issues predicting values on the edges.
 		Each struggles to predict the edge cases of 0 and 3+, and are inbalanced to the more
 		populated bins.
 	      </p>
+	      <p>
+
 	      <img src="/fantasy_football/images/KNN_2020_2022.pkl_pass_touchdown.png" 
                 width="800" 
-                alt="The k nearest neighbors algorithm performs best at predicting the 0 case, but severly under predicts these cases."
-	      />
+		   />
+	      <br>
+              The k nearest neighbors algorithm performs best at predicting the 0 case, but severly under predicts these cases.
+	      </p>
+	      <p>
 	      <img src="/fantasy_football/images/MLP_2020_2022.pkl_pass_touchdown.png" 
                 width="800" 
-                alt="The neural network fails completely to predict the edge bins, favoring the most populous classes."
 	      />
+                The neural network fails completely to predict the edge bins, favoring the most populous classes.
+	      </p>
+	      <p>
+
 	      <img src="/fantasy_football/images/SVM_2020_2022.pkl_pass_touchdown.png" 
                 width="800" 
-                alt="The support vector algorithm was the worse performer for the offensive interceptions, but here is best at predicting the top end class."
-	      />
+		   />
+	      <br>
+                The support vector algorithm was the worse performer for the offensive interceptions, but here is best at predicting the top end class.
+	      </p>
+
 	      <p>
 		Clearly the strengths and weaknesses of these algorithms are affecting these results.
 		We manually go through each predicted variable to see which algorithm has the best performance,
