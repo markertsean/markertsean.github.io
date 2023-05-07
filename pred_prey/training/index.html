@@ -1,0 +1,94 @@
+---
+layout: ff_default
+title: Training
+---
+<div class="blurb">
+	      <h2>Character Vision</h2>
+	      <p>
+		One of the vital character parameters is the vision. The vision object creates a set
+		of rays oriented at different angles on either side of the characters orientation.
+		The user can provide the center of these group of rays, and the total field of view.
+		IE, if the user provides a FOV of 90 degrees, offset of 45 degrees, and 9 rays, the rays
+		will all have a width of 10 degrees, and the "left" rays will be centered on (left to right)
+		[85,75,65,55,45,35,25,15,5] degrees, and the "right" rays centered on
+		[355,345,335,325,315,305,295,285,275] degrees. Any named object that the character can see
+		that intersects one of these rays will be placed within it, and the closest values are
+		used to determine changes in behavior.
+	      </p>
+	      <!-- ADD AN IMAGE! -->
+	      <p>
+		With the vision object, we can pair it with a Multi Layered Perceptron to train the
+		predator and prey behavior, by outputting changes to speed and orientation as the final
+		layer. We do this using a simple MLP to ensure we capture intended behavior or turning
+		towards food, avoiding collisions, and avoiding predators. We later those combine those with a
+		MLP to construct a much stronger neural network that can weigh these decisions against
+		each other.
+	      </p>
+
+	      <h2>Training Simple Behavior</h2>
+	      <p>
+		We first use reinforcement learning to train basic behavior into our characters.
+		The most obvious of these is to encourage our characters to move towards food.
+		In the case of prey, this is the static food sources. We devise a rule set based on the
+		following principles:
+		<UL>
+		  <LI>If there is no food visible, turn slightly and increase speed to find it.
+		  <LI>If there is food in our heading, increase speed towards the food.
+		  <LI>If there is no food in our heading and food slightly off our heading, turn towards it.
+		  <LI>If there is no food near our front but food to the side, decrease speed and turn towards it.
+		</UL>
+		Looking at the results:
+	      </p>
+
+	      <img src="/pred_prey/images/pp_food.gif" 
+                width="800" 
+		   />
+
+	      <p>
+		We do see the desired behavior. There is some funny circling that can occur if the
+		food source is hit from a slight angle, but this is ok. We don't want to sit stationary
+		in the food source, as we want to give opportunity to see predators. There is a clear
+		problem however with collisions, which we don't want. So, on to our next behavior test.
+	      </p>
+	      <p>
+		We want to avoid collisions, so we must train behavior to avoid similar characters
+		when we will collide. This is a simpler rule set:
+		<UL>
+		  <LI>If there is a character of the same name very close and in our heading, turn away and heavily decrease speed.
+		  <LI>If there is a character of the same name very close and not in our heading, turn away.
+		</UL>
+		Here, our results look like:
+	      </p>
+
+	      <img src="/pred_prey/images/pp_avoid_self.gif" 
+                width="800" 
+		   />
+
+	      <p>
+		Success! These results clearly show cases of the prey avoiding other prey.
+	      </p>
+	      <p>
+		Finally, we arrive at the final simple behavior to test - flee from predators.
+		These rules are:
+		<UL>
+		  <LI>If our predator is in our heading, heavily decrease speed and turn hard.
+		  <LI>If our predator is near our heading, decrease speed and turn hard.
+		  <LI>If our predator is near 45 degrees from our heading, turn.
+		  <LI>If our predator is greater than 45 degrees from our heading, turn and speed up.
+		</UL>
+		These results lie below:
+	      </p>
+
+	      <img src="/pred_prey/images/pp_avoid_predators.gif" 
+                width="800" 
+		   />
+
+	      <p>
+		Another successful test! We use dummy predators in red that move at a constant speed,
+		and see the prey reacting to the presence of predators in their vision.
+	      </p>
+	      <!--<p>
+		<a href="/fantasy_football/exploration">Start at data exploration </a>
+	      </p>-->
+
+</div><!-- /.blurb -->

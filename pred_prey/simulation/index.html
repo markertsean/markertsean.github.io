@@ -46,26 +46,7 @@ title: Simulation Objects
 		The characters by default have a few intrinsic properties, including: positions x & y,
 		radius (all are circle shaped), a name, and whether it is consumed (deleted) by what eats it.
 		Additionally, there are a number of attributes that can be activated by the user, allowing
-		extra functionality. These are listed below at the end of this section.
-	      </p>
-	      <p>
-		One of the vital character parameters is the vision. The vision object creates a set
-		of rays oriented at different angles on either side of the characters orientation.
-		The user can provide the center of these group of rays, and the total field of view.
-		IE, if the user provides a FOV of 90 degrees, offset of 45 degrees, and 9 rays, the rays
-		will all have a width of 10 degrees, and the "left" rays will be centered on (left to right)
-		[85,75,65,55,45,35,25,15,5] degrees, and the "right" rays centered on
-		[355,345,335,325,315,305,295,285,275] degrees. Any named object that the character can see
-		that intersects one of these rays will be placed within it, and the closest values are
-		used to determine changes in behavior.
-	      </p>
-	      <p>
-		With the vision object, we can pair it with a Multi Layered Perceptron to train the
-		predator and prey behavior, by outputting changes to speed and orientation as the final
-		layer. We do this using a simple MLP to ensure we capture intended behavior or turning
-		towards food, avoiding collisions, and avoiding predators. We those combine those with a
-		MLP to construct a much stronger neural network that can weigh these decisions against
-		each other.
+		extra functionality. These are listed below.
 	      </p>
 	      <h2>Tunable Character Parameters</h2>
 	      <p>
@@ -142,8 +123,8 @@ title: Simulation Objects
 		  <LI>mutation_halflife - Number of generations before mutation rate cut in half (+ minimum)
 		</UL>
 	      </p>
-	      <!--<p>
-		<a href="/fantasy_football/exploration">Start at data exploration </a>
-	      </p>-->
+	      <p>
+		<a href="/pred_prey/training/">Move on to the vision and NN training</a>
+	      </p>
 
 </div><!-- /.blurb -->
