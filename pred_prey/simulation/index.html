@@ -26,9 +26,9 @@ title: Simulation Objects
 	      <p>
 		The simulation box calls a set of character functions for each character, calling
 		the function for all characters before moving to the next function. In order, these
-		are: ageing the characters, calculate the vision values, interpret the vision to
+		are: aging the characters, calculate the vision values, interpret the vision to
 		update the speed and orientation, spawn new characters, update the character energy,
-		and as a last step, move and eat. This is parallelized to run concurently by cell, with the
+		and as a last step, move and eat. This is parallelized to run concurrently by cell, with the
 		exception of the "move" step. Every function prior to this one can be calculated
 		independent of the other characters, but during the move step we check for collisions,
 		and thus each character needs the up-to-date position to avoid colliding with a character
@@ -49,7 +49,7 @@ title: Simulation Objects
 		extra functionality. These are listed below at the end of this section.
 	      </p>
 	      <p>
-		One of the vital character paramters is the vision. The vision object creates a set
+		One of the vital character parameters is the vision. The vision object creates a set
 		of rays oriented at different angles on either side of the characters orientation.
 		The user can provide the center of these group of rays, and the total field of view.
 		IE, if the user provides a FOV of 90 degrees, offset of 45 degrees, and 9 rays, the rays
@@ -65,7 +65,7 @@ title: Simulation Objects
 		layer. We do this using a simple MLP to ensure we capture intended behavior or turning
 		towards food, avoiding collisions, and avoiding predators. We those combine those with a
 		MLP to construct a much stronger neural network that can weigh these decisions against
-		eachother.
+		each other.
 	      </p>
 	      <h2>Tunable Character Parameters</h2>
 	      <p>
@@ -112,7 +112,7 @@ title: Simulation Objects
 		  <LI>brain_weights - List of list of weights for each layer of the neural network
 		  <LI>brain_biases - List of biases for each layer of the neural network
 		  <LI>brain_AF - List of activation functions for each layer
-		  <LI>complex_brain - True/False, whether to create more detailed neural network, allowing arbitarty combinations of MLPs, other variables for decision making
+		  <LI>complex_brain - True/False, whether to create more detailed neural network, allowing arbitrary combinations of MLPs, other variables for decision making
 		  <LI>complex_brain_input_structure - List of strings containing character variable names, MLP files to include in the complex_brain
 		  <LI>complex_brain_variables - List of strings containing character variables names in order of input into the complex_brain network.
 		  <LI>complex_brain_nn_structure - List of number of nodes in each layer of the neural network that combines the input
@@ -123,7 +123,7 @@ title: Simulation Objects
 		  <LI>brain_input_version - File name to load brain file
 		  <LI>learns - True/False, whether to use re-enforcement learning to adjust neural network weights
 		  <LI>learning_max - Maximum allowable learning rate in brain weights, at age 0
-		  <LI>learning_floor - Minimum allowable learning reate in brain weights, at age max
+		  <LI>learning_floor - Minimum allowable learning rate in brain weights, at age max
 		  <LI>learning_halflife - Number of generations before learning rate cut in half (+ minimum)
 		  <LI>X_move_reward - Reward multiplier for moving in the direction of object with name X while learning
 		  <LI>X_orientation_reward - Reward multiplier for turning in the direction of object with name X while learning
