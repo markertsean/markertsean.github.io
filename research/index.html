@@ -6,24 +6,45 @@ image_text: The day of my thesis proposal
 ---
 <div class="blurb">
 
-	      <h2>Weak Gravitational Lensing of Clusters in Simulations</h2>
 	      <p>
-                My dissertation was aimed at studying the weak lensing observational methods used to 
-                recover galaxy cluster masses. There were two major components to this dissertation: 
-                implementing a more accurate density profile, and challenging the observational 
-                assumption that the clusters are spherical.
+		This page contains a high level overview of my dissertation work, with a focus on results.
+		For a copy of the full dissertation, which contains details on methodology,
+		please email me at markertsean0@gmail.com
 	      </p>
 
+	      <p>
+		Some helpful terms definitions for non-lensing-cosmologists:
+		<ul>
+		  <li>Weak Lensing - Distortion of the shape of galaxies viewed behind a massive galaxy cluster, due to the distortion of space by gravity</li>
+		  <li>Dark Matter - matter that does not interact with normal matter or light, but does impose a gravitational pull</li>
+		  <li>Halo - A cloud of dark matter, that makes up most of the mass of galaxy or galaxy cluster</li>
+		  <li>Virial Radius - Outermost radius of a galaxy cluster halo</li>
+		  <li>Shear - Amount of stretching of the shape of galaxies due to weak lensing</li>
+		  <li>Reduced Shear - The observed shear in weak lensing, shear combined with other distortion effects</li>
+		  <li>Mpc - Megaparsec, a distance of measure roughly equivalent to 3 lightyears</li>
+		  <li>h<sup>-1</sup> Mpc - A Megaparsec distance measure, corrected for uncertainty in expansion of the universe</li>
+		  <li>M<sub>&#9673;</sub> - Solar masses, equivalent to one mass of our sun</li>
+		  <li>h<sup>-1</sup> M<sub>&#9673;</sub> - Solar masses, corrected for uncertainty in expansion of the universe</li>
+		</ul>
+	      </p>
 
+              <h2>Weak Gravitational Lensing of Clusters in Simulations</h2>
+	      
+	      <p>
+                My dissertation was aimed at studying systematic effects the weak lensing observational methods used to 
+                recover galaxy cluster masses. There were two major components to this dissertation: 
+                implementing a more accurate density profile for mass estimation, and challenging the observational 
+                assumption that the clusters are spherical. The former should result in more accurate
+		mass estimations, with decreases in bias and standard deviations in predicted cluster masses.
+		The later is an examination of a fundamental assumption - as non-spherical mass profiles
+		causes major increases in the standard deviation of predicted masses, and mass along the line of sight
+		increases both the bias and standard deviation.
+	      </p>
 
 	      <p>
                 <br>
-                The first part of this project was conceptually straightforward, we know the Einasto 
-                density profile provides a better fit to dark matter halos in simulations (for the 
-                non-astronomers, I will refer to galaxy clusters as halos). Despite this, the NFW 
-                density profile is exclusively used to predict galaxy cluster masses, when fit to weak 
-                lensing data
-                (e.g. 
+		The NFW density profile is exclusively used to predict galaxy cluster masses, when fit to weak 
+                lensing data (e.g. 
                 <a href="#ref1">1</a>, 
                 <a href="#ref2">2</a>, 
                 <a href="#ref3">3</a>, 
@@ -35,8 +56,8 @@ image_text: The day of my thesis proposal
                 <a href="#ref17">17</a>, 
                 <a href="#ref18">18</a>). 
                 The NFW profile is used for it's many strengths, simple analytical form for the reduced 
-                shear (fit parameter), only one free variable (mass), and widespread use of the NFW 
-                profile for two decades. The Einasto profile provides a better fit
+                shear (our fit parameter), only one free variable (mass), and widespread use of the NFW 
+                profile for two decades. The Einasto profile provides a better fit to halos
                 (
                 <a href="#ref4">4</a>, 
                 <a href="#ref5">5</a>, 
@@ -45,8 +66,8 @@ image_text: The day of my thesis proposal
                 <a href="#ref10">10</a>, 
                 <a href="#ref13">13</a>),
                 but has a significantly more complicated expression for the reduced shear, requiring 
-                more computational resources, and the weak lensing solution was only recently derived 
-                by <a href="#ref11">11</a>, <a href="#ref12">12</a>.
+                more computational resources, and the weak lensing solution for which was only recently derived 
+                by <a href="#ref11">11</a>, <a href="#ref12">12</a>).
 	      </p>
 	      <p>
                 <br>
@@ -58,29 +79,66 @@ image_text: The day of my thesis proposal
                 added to the line of sight, and even a spherical halo would experience significant noise 
                 due to inhomogeneities along the line of sight.
 	      </p>
-              <!-- basic analysis & plots-->
-              <h3>Results</h3>
+
+              <h3>Procedure overview</h3>
+
+	      <p>
+		For this project, we examine ~5,300 dark matter galaxy cluster halos at a z~0.5, using the
+		MultiDark Planck simulation. We fit three different mass profiles: the NFW profile (which
+		is traditionally used in weak lensing mass estimation), a truncated NFW profile cutoff at the
+		virial radius, and the Einasto profile.
+	      </p>
+	      
+	      <p>
+		These fits are applied to spherical cutouts of the halos at the virial radius, a 10 h<sup>-1</sup> Mpc cube centered on the halo,
+		and the 10 h<sup>-1</sup> Mpc cube with varying integration lengths along the line of sight, to
+		a maximum of 400 h<sup>-1</sup> Mpc. The spherical cutout gives us the best analysis of
+		which density profile gives the most accurate masses. The 10 h<sup>-1</sup> Mpc cube and
+		longer integration lengths give an estimate of how masses along the line of sight introduce
+		bias and spread to our fit masses, and carry implications for surveys that look deeper
+		at galaxy clusters.
+	      </p>
+
+	      <div class="figure">
+                <img src="/research/images/Sphere_Cube_Integration.png"
+                     width="700"
+                     alt="Figure 1: 2D mass maps">
+                <div class="figure_caption">
+                  Figure 1: 2D mass maps of the sphere, cube, and integration. As more matter is added along longer integration lengths,
+		  it's clear we can expect the quality of our mass estimation to decrease.
+		  <br>
+		  <br>
+                </div>
+              </div>
+
               <p>
                 We estimated tens of thousands of halo masses from MultiDark simulations using weak lensing
-                analysis. We fit the traditional NFW density profile, a NFW profile I modified, and the 
-                Einasto density profile. Furthermore, we fit to the reduced shear components that are only 
-                sensitive to radial variations (g<sub>tan</sub>), and the total reduced shear (g<sub>tot</sub>), to test the
-                observational approximation that galaxy clusters can be approximated as spheres. 
-                Observationally, g<sub>tot</sub> is measured, but they claim to only measure g<sub>tan</sub>, which is required 
-                for the observational density profile fitting method.
+                analysis, and fitting our density profiles.
+                Observationally the reduced shear, g<sub>tot</sub> is measured.
+		But, the assumption of spherical halos equates this to g<sub>tan</sub>, the reduced shear
+		components that are only sensitive to radial variations.
+		This is required for the observational density profile fitting method.
+		The actual relationship between these two is: g<sub>tot</sub><sup>2</sup> = g<sub>tan</sub><sup>2</sup> + g<sub>sec</sub><sup>2</sup>,
+		where g<sub>sec</sub> is the reduced shear due to non-radial variations in the halo mass.
+		To test this assumption, we fit both the tangent component of reduced shear g<sub>tan</sub>,
+		and the total reduced shear (g<sub>tot</sub>)
               </p>
+
+              <!-- basic analysis & plots-->
+              <h3>Results - Fitting Different Density Profiles</h3>
 
               <p>
                 <br>
-                First lets look at the results for different density profiles. We see in Figure 1 a six
-                panel grid, the left column is only considering the spherical halo (cutoff at the 
-                virial radius), and the right column including local structure within 10 h<sup>-1</sup> Mpc.
-                The top row is my modified NFW density profile, mid is the NFW profile, and bottom is
-                the Einasto profile. On the x axis is the mass of the halos from the simulation, or the
-                "true" mass of the halo. The y axis is the predicted mass from the density profile
-                fitting of the reduced shear from weak lensing. The blue line is the 1:1 fit line,
-                and the red dashed line the line of best fit. Figure 1 is a fit to the total reduced 
-                shear, or what observers actually measure.
+                First we will compare different density profiles. We see in Figure 2 a six
+                panel grid, each panel containing fits to the true mass on the x-axis (M<sub>200</sub>)
+		and the measured weak lensing mass on the y-axis (M<sub>wl</sub>). Each contains
+		a 1:1 line in blue, and the best fit line as a red dash. The bias and standard deviation
+		of each best fit line is in the lower right corner of each panel. The left panels are
+		our spherical mass cutouts, fit only to the galaxy cluster, and the right panels
+		are the 10 h<sup>-1</sup> Mpc cubes, which contain local structure. The top panels are
+		the truncated NFW profile, the middle are the standard NFW profile, and the bottom
+		is the Einasto profile. These are fit to the total reduced shear, g<sub>tot</sub>,
+		so match what observers actually measure.
                 <br>
               </p>
 
@@ -88,14 +146,11 @@ image_text: The day of my thesis proposal
               <div class="figure">
                 <img src="/research/images/biasPanel_tot.png"
                      width="700"
-                     alt="Figure 1: Image showing the mass spread and bias for the g<sub>tot</sub> fits.">
+                     alt="Figure 2: Image showing the mass spread and bias for the g<sub>tot</sub> fits.">
                 <div class="figure_caption">
-                  Figure 1: Image showing the mass spread and bias for the g<sub>tot</sub> fits. Left column is 
+                  Figure 2: Image showing the mass spread and bias for the g<sub>tot</sub> fits. Left column is 
                   r<sub>vir</sub> cutoff, right column includes structure within 10 h<sup>-1</sup> Mpc. Top row is 
-                  truncated NFW profile, middle is NFW profile, and bottom is Einasto. Blue solid
-                  line is the 1:1 line, red dashed line is the line of best fit. The x axis is the
-                  true halo mass from the simulation, and the y axis is the predicted mass from 
-                  the lensing analysis. The total reduced shear reflects what is actually observed.
+                  truncated NFW profile, middle is NFW profile, and bottom is Einasto.
               <br>
               <br>
                 </div>
@@ -103,14 +158,12 @@ image_text: The day of my thesis proposal
 
               <p>
                 <br>
-                We see that for all density profiles, the sphere cutoff gives overall a similar result
-                as the estimations with local structure included. The bias of the fit (beta) and spread
-                (sigma) increase with introduction of local structure, the increase is not huge, but is
-                statistically significant. Furthermore, we see the modified NFW profile has the tightest
-                spread and lowest bias of the three distributions, with the Einasto having the worst 
-                performance. The absolute bias here is less interesting than the relative spread between
-                the profiles, as the bias is dependent on the fit parameters used, and we are mostly 
-                interested in the tightness of the spread of the distribution.
+		We see that for all density profiles there is a positive bias, and thus over prediction in mass.
+		The truncated NFW profile performs the best, and Einasto profile the worst, and this also
+		holds true for the standard deviation in the fits. With the introduction of local structure
+		the spread and bias unsurprisingly increase, with no change in order of performance of the
+		different models. These differences in spread and bias are statistically significant across all models.
+                <br>
                 <br>
               </p>
 
@@ -118,9 +171,9 @@ image_text: The day of my thesis proposal
               <div class="figure">
                 <img src="/research/images/biasPanel_tan.png"
                      width="700"
-                     alt="Figure 2: Image showing the mass spread and bias for the g<sub>tan</sub> fits.">
+                     alt="Figure 3: Image showing the mass spread and bias for the g<sub>tan</sub> fits.">
                 <div class="figure_caption">
-                  Figure 2: Image showing the mass spread and bias for the g<sub>tan</sub> fits, as in Figure 1.
+                  Figure 3: Image showing the mass spread and bias for the g<sub>tan</sub> fits, compared with Figure 2.
                   The tangent component of shear is what is assumed to be measured in observations,
                   under the assumption of spherical symmetry.
               <br>
@@ -130,22 +183,33 @@ image_text: The day of my thesis proposal
 
               <p>
                 <br>
-                In Figure 2 we see the same fits, but to the spherically symmetric component g<sub>tan</sub> 
+                In Figure 3 we see the same style of plot as in Figure 2, but fits to the spherically symmetric component g<sub>tan</sub> 
                 (what observers claim to measure). We see the same general trends as in Figure 1, however
                 fits to this component show a significantly lower bias than the g<sub>tot</sub> fits, and lower
                 spread with the inclusion of structure. This is the first indication of a difference
                 in g<sub>tot</sub>/g<sub>tan</sub> fits, hitting at the second major purpose of the dissertation.
+
+
+		In Figure 3 we see the same style of plot as in Figure 2, but fits to the spherically symmetric component g<sub>tan</sub> 
+                (what observers claim to measure).
+		We see the significantly lower bias than the g<sub>tot</sub> fits, as g<sub>tot</sub> >= g<sub>tan</sub>.
+		Interestingly, we see increased spread on the spherical fits, but lower spread with the inclusion of structure.
+		The resiliency of g<sub>tan</sub> over g<sub>tot</sub> with structure can be understood due to
+		inhomogeneities in the 2D mass profile imposing a g<sub>sec</sub> component.
+		<br>
                 <br>
               </p>
+
+              <h3>Results - Effect of Mass Along Line of Sight to Fits</h3>
 
               <div class=figure>
                 <img src="/research/images/NFW_IntegPanel_tot.png"
                      width="700" 
-                     alt="Figure 3: Mass spread for different line of sight lengths for g<sub>tot</sub>.">
+                     alt="Figure 4: Mass spread for different line of sight lengths for g<sub>tot</sub>.">
                 <div class="figure_caption">
-                  Figure 3: Mass spread for different line of sight lengths for g<sub>tot</sub>. Integration 
+                  Figure 4: Mass spread for NFW fits to different line of sight lengths for g<sub>tot</sub>. Integration 
                   length increases across rows, then down in column. Longer integration lengths
-                  add uncorrelated structure along the line of sight, adding noise to the shear
+                  add uncorrelated structure along the line of sight, adding noise to the reduced shear
                   signal. This has a strong effect on the halos at low mass.
               <br>
               <br>
@@ -154,25 +218,27 @@ image_text: The day of my thesis proposal
 
               <p>
                 <br>
-                We tested this same analysis by performing fitting with longer integration lengths,
-                which includes uncorrelated structure along the line of sight. This is a source of
-                noise, and can have significant impact on the measured shear. We will only show the
-                results for the NFW profile, for simplicity. In Figure 3 we show the fits to g<sub>tot</sub> 
-                for increasing integration lengths. The integration length increases across the rows,
-                and the top left panel is the same as in Figure 1. As can be seen, with increasing 
+                Figure 4 presents the same style of plot as in Figure 2, fitting with longer integration lengths,
+		for the NFW profile fits to g<sub>tot</sub>.
+                Uncorrelated structure along the line of sight forms a major source of
+                noise, and can have significant impact on the measured shear. For simplicity we will only show the
+                results for the NFW profile, but the trend is the same across all profiles.
+		As can be seen, with increasing 
                 integration length more uncorrelated structure (junk) is added to the line of sight,
-                increasing both the scatter and bias. This is a huge issue for the low mass halos, 
-                the most sensitive to the noise, and makes our distribution no-homoscedastic.
+                increasing both the scatter and bias. This is a huge issue for the low mass halos,
+		the most sensitive to the noise, rending many an order of magnitude high in estimated mass,
+                and makes our distribution non-homoscedastic.
+                <br>
                 <br>
               </p>
 
               <div class=figure>
                 <img src="/research/images/NFW_IntegPanel_tan.png"
                      width="700" 
-                     alt="Figure 4: Mass spread for different line of sight lengths for g<sub>tan</sub>.">
+                     alt="Figure 5: Mass spread for different line of sight lengths for g<sub>tan</sub>.">
                 <div class="figure_caption">
-                  Figure 4: Mass spread for different line of sight lengths for g<sub>tan</sub>. When only 
-                  considering the tangent component of shear, the noise due to structure has little
+                  Figure 5: Mass spread for different line of sight lengths for g<sub>tan</sub>. When only 
+                  considering the tangent component of shear, the noise due to structure has little to no
                   effect on the recovered mass.
               <br>
               <br>
@@ -182,23 +248,25 @@ image_text: The day of my thesis proposal
 
               <p>
                 <br>
-                Figure 4 shows the same as Figure 3, but as a fit to g<sub>tan</sub>, what observers claim to
+                Figure 4 is the same style of plot as Figure 3, but as fits to g<sub>tan</sub>, what observers claim to
                 observe. This demonstrates a dramatic difference to the g<sub>tot</sub> case (what is actually
-                observed), with no statistically significant spread change, and a homoscedastic spread
-                across all masses. This indicates the noise induced by correlated structure does not
-                contribute significantly to g<sub>tan</sub>.
+                observed), with no statistically significant changes in standard deviation between integration steps,
+		and a homoscedastic spread across all masses. This indicates the noise induced by correlated structure does not
+                contribute significantly to g<sub>tan</sub>. The immense difference in g<sub>tot</sub> and g<sub>tan</sub>
+		fits has drastic consequences for any deep surveys utilizing weak lensing for mass estimation.
+                <br>
                 <br>
               </p>
 
               <div class=figure>
                 <img src="/research/images/mRatio2.png"
                      width="700" 
-                     alt="Figure 5: Relative contribution to g<sub>tot</sub> as a function of halo radii.">
+                     alt="Figure 6: Relative contribution to g<sub>tot</sub> as a function of halo radii.">
                 <div class="figure_caption">
-                  Figure 5: Relative contribution to g<sub>tot</sub> as a function of halo radii.
+                  Figure 6: Relative contribution to g<sub>tot</sub> as a function of halo radii.
                   The solid line is the mean of (g<sub>tan</sub>/g<sub>tot</sub>)<sup>2</sup>, and dashed line the mean of
-                  (g<sub>sec</sub>/g<sub>tot</sub>)<sup>2</sup>. 1 sigma standard deviations are shown in the shaded area, 
-                  but very narrow. Different colors represent longer integration lengths along
+                  (g<sub>sec</sub>/g<sub>tot</sub>)<sup>2</sup>. 1 sigma standard deviations are shown in the shaded areas,
+                  but are so narrow as to not be visible on anything but the dashed lines. Different colors represent longer integration lengths along
                   the line of sight. As integration lengths increase, the contribution to 
                   g<sub>sec</sub> increases, causing noise in g<sub>tot</sub>.
               <br>
@@ -206,29 +274,32 @@ image_text: The day of my thesis proposal
                 </div>
               </div>
 
+              <h3>Results - Relative Contributions from Shear Components</h3>
 
               <p>
                 <br>
                 To study the difference between g<sub>tot</sub> and g<sub>tan</sub>, we can examine the relative 
                 contributions of the two components, where g<sub>tot</sub><sup>2</sup> = g<sub>tan</sub><sup>2</sup> + 
-                g<sub>sec</sub><sup>2</sup>. Figure 5
-                shows the azimuthal mean of the squared ratio of the two components g<sub>tan</sub>/g<sub>sec</sub> to
+                g<sub>sec</sub><sup>2</sup>. We do this by averaging these values as a function of radius, using the
+		raw 2D mass maps, and not fitting any profile to them. Figure 6
+                shows the mean of the squared ratio of the two components g<sub>tan</sub> or g<sub>sec</sub> to
                 g<sub>tot</sub>, as a function of radius for the halo. We binned this into three mass bins,
                 with an equal number of bin members. The result is the fractional contribution of 
                 g<sub>tan</sub> (solid) and g<sub>sec</sub> (dashed) to g<sub>tot</sub>, with the color being increased integration
-                length (junk along the line of sight). We see that in the low mass bin (top), the
-                contribution from g<sub>sec</sub> quickly dominates at longer integration lengths. This is better
-                understood by scaling by the halo's virial radius, as in Figure 6.
+                length (matter along the line of sight). We see that in the low mass bin (top), the
+                contribution from g<sub>sec</sub> quickly increases at longer integration lengths. This is better
+                understood by scaling by the halo virial radius, as in Figure 7 below.
+                <br>
                 <br>
               </p>
 
               <div class=figure>
                 <img src="/research/images/mRatio_rvir2.png"
                      width="700" 
-                     alt="Figure 6: Relative contribution to g<sub>tot</sub> as a function of scaled halo radii.">
+                     alt="Figure 7: Relative contribution to g<sub>tot</sub> as a function of scaled halo radii.">
                 <div class="figure_caption">
-                  Figure 6: Relative contribution to g<sub>tot</sub> as a function of scaled halo radii.
-                  Similar to Figure 5, but with all halos scaled by their virial radius. The 
+                  Figure 7: Relative contribution to g<sub>tot</sub> as a function of scaled halo radii.
+                  Comparable to Figure 6, but with all halos scaled by their virial radius. The 
                   relative contribution to g<sub>sec</sub> spikes outside of 1 r<sub>vir</sub> for longer integration lengths.
               <br>
               <br>
@@ -238,12 +309,14 @@ image_text: The day of my thesis proposal
 
               <p>
                 <br>
-                We see in Figure 6 the same as in Figure 5, but with the radius scaled to the virial
-                radius of each halo, so that 1 is the halo "edge". The black line (r<sub>vir</sub> cutoff) clearly
-                shows that for the halo itself, the approximation of g<sub>tot</sub>=g<sub>tan</sub> is perfectly valid, with
-                even the inner regions having (g<sub>tan</sub>/g<sub>tot</sub>)<sup>2</sup> > 0.9. However with the introduction 
+                Figure 7 combines the bins in Figure 6 by scaling the radius to the virial
+                radius of each halo, so that the 1 on the x axis line up with the halo "edge".
+		The black line (r<sub>vir</sub> cutoff) clearly
+                shows that for the halo itself, the approximation of g<sub>tot</sub>=g<sub>tan</sub> is a good assumption, with
+                the inner regions having (g<sub>tan</sub>/g<sub>tot</sub>)<sup>2</sup> > 0.9. However with the introduction 
                 of local structure, the contributions from g<sub>sec</sub> increase, and at further integration lengths,
                 the observational approximation breaks down quickly.
+                <br>
                 <br>
               </p>
 
@@ -256,13 +329,18 @@ image_text: The day of my thesis proposal
                 The uncorrelated structure along the line of sight adds noise to the secant component of 
                 shear, reaching a similar level of contribution to the tangent component at a few virial radii
                 for any large integration length.
-                This is a huge problem in observations, because galaxy cluster lenses exist at greater distances
-                than I reproduced in this dissertation.
+                This is a massive barrier for observations, because many galaxy cluster lenses in surveys
+		extend far further out than my maximum integration length of 400 h<sup>-1</sup> Mpc distance, which as a distance alone
+		would correlate with a redshift of z~0.1. At the time of this writing, some surveys extend to a redshift
+		of z~0.55, which would correlate to an integration length of approximately 1.4 h<sup>-1</sup> Gpc. Weak lensing
+		as a cluster mass estimating methodology must find a way to overcome inhomogeneities in their integration
+		as surveys explore deeper redshifts.
               </p>
 
 	      <br />
 	      <br />
 
+	      <!--
 	      <h2>Publications and Conferences</h2>
 
               The signal of weak gravitational lensing of galaxy groups and clusters
@@ -283,6 +361,7 @@ image_text: The day of my thesis proposal
 	      <br />
 	      <br />
 	      <br />
+	      -->
 
 	      <h2>References</h2>
 
@@ -308,3 +387,6 @@ image_text: The day of my thesis proposal
 
 
 </div><!-- /.blurb -->
+
+<!--  LocalWords:  virial Mpc
+ -->
