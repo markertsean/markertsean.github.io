@@ -1,0 +1,50 @@
+---
+layout: dominion_default
+title: Dominion AI
+---
+<div class="blurb">
+	      <h2>Dominion Game AI (Updated Feb 2024)</h2>
+	      <p>
+		One of my favorite card games is Dominion. A deck building game, players
+		take turns playing action cards in an attempt to get more treasure in their hand,
+		and then use that treasure to buy cards. Certain cards you can buy are worth more
+		Victory Points, and whoever has the most VP at the end wins. It is a simple concept,
+		but with approximately 535 unique action cards and 10 action cards per game, that
+		gives us 1.7 x 10<sup>27</sup> unique possible games, other game modifiers
+		notwithstanding. This presents itself as challenging project for building an AI
+		model that can make decisions on what cards to play and purchase.
+                <!-- <a href="/number_recognition/exploration">Data Exploration</a>. -->
+              </p>
+	      <h3>Deck Analysis GUI</h3>
+	      <p>
+		Given the challenges of analyzing choices in the changing environment as a player
+		builds their deck, I build a deck analysis Graphical User Interface to assist
+		with debugging and building the AI. It allows the user to construct a Kingdom
+		(set of cards used in a game), and from that Kingdom move cards between the
+		player's Hand (H), Draw pile (D), Discard pile (X), and the Play area (P).
+		It updates and displays tracked stats used by the model, and provides a
+		recommendation of which card to play based on a Markov Decision Process.
+	      </p>
+	      <img src="/dominion/images/gui_demo.png" width="400"/>
+	      
+	      <h3>Next steps</h3>
+	      <p>
+		Within the framework of the game, there are 4 elements the AI must be able to accomplish:
+		buying, playing actions, discarding, and trashing. Trashing, discarding, and playing actions
+		can be accomplished algorithmically. At present, there are simple stand in algorithms
+		that the AI uses for discarding and trashing based on simple prioritizing attributes
+		of a card. The playing of actions has been implemented using a Markov Decision Process
+		to optimize play attributes, primarily treasure.
+	      </p>
+	      <p>
+		The hardest component by far is still under development - deciding which cards to buy.
+		Given the 1.7 x 10<sup>27</sup> possible unique games, this model will need to consider
+		multiple card attributes in it's decision making. To accurately train the model, the
+		discarding and trashing attributes will need to be clearly flushed out. The benchmark
+		strategy is the Big Money strategy: only buying money or victory points. This strategy
+		averages out owning 4 provinces by turn 17, and is playable in every Kingdom, so any model
+		must outperform 4 provinces by turn 17 to be considered successful.
+	      </p>
+
+
+</div><!-- /.blurb -->
